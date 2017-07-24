@@ -1,0 +1,79 @@
+<Activity mc:Ignorable="sap2010 sads" x:Class="NestedServices.ServiceReference1.Activities.ReverseString" this:ReverseString.EndpointConfigurationName="BasicHttpBinding_IReverseString"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:ns="clr-namespace:NestedServices.ServiceReference1;assembly=NestedServices, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+ xmlns:ns1="clr-namespace:NestedServices.ServiceReference1;assembly=NestedServices"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:sc="clr-namespace:System.ComponentModel;assembly=System"
+ xmlns:this="clr-namespace:NestedServices.ServiceReference1.Activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="EndpointConfigurationName" Type="x:String">
+      <x:Property.Attributes>
+        <sc:DefaultValueAttribute>
+          <x:Arguments>
+            <x:String>BasicHttpBinding_IReverseString</x:String>
+          </x:Arguments>
+        </sc:DefaultValueAttribute>
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="InputString" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="ReversedString" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <Sequence>
+    <Sequence.Variables>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+    </Sequence.Variables>
+    <p1:Send x:Name="__ReferenceID0" Action="http://tempuri.org/IReverseString/ReverseString" OperationName="ReverseString" ServiceContractName="p:IReverseString">
+      <p1:Send.CorrelationInitializers>
+        <p1:RequestReplyCorrelationInitializer>
+          <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+            <InArgument x:TypeArguments="p1:CorrelationHandle">
+              <VariableValue x:TypeArguments="p1:CorrelationHandle">
+                <VariableValue.Variable>
+                  <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID2" />
+                </VariableValue.Variable>
+              </VariableValue>
+            </InArgument>
+          </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+        </p1:RequestReplyCorrelationInitializer>
+      </p1:Send.CorrelationInitializers>
+      <p1:SendMessageContent>
+        <InArgument x:TypeArguments="ns1:ReverseStringRequest">[New NestedServices.ServiceReference1.ReverseStringRequest() With { .InputString = InputString }]</InArgument>
+      </p1:SendMessageContent>
+      <p1:Send.EndpointConfigurationName>
+        <PropertyReference x:TypeArguments="x:String" PropertyName="EndpointConfigurationName" />
+      </p1:Send.EndpointConfigurationName>
+    </p1:Send>
+    <p1:ReceiveReply Request="{x:Reference __ReferenceID0}" Action="http://tempuri.org/IReverseString/ReverseStringResponse">
+      <p1:ReceiveMessageContent>
+        <OutArgument x:TypeArguments="ns1:ReverseStringResponse">
+          <VariableReference x:TypeArguments="ns1:ReverseStringResponse">
+            <VariableReference.Variable>
+              <Variable x:TypeArguments="ns1:ReverseStringResponse" x:Name="__ReferenceID1" Name="tempResult_78fe0eba783448538bdb4fa8381f5ae5" />
+            </VariableReference.Variable>
+          </VariableReference>
+        </OutArgument>
+      </p1:ReceiveMessageContent>
+    </p1:ReceiveReply>
+    <Assign>
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ReversedString]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[tempResult_78fe0eba783448538bdb4fa8381f5ae5.ReversedString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d70BXFxmcy1zdnIwMlxob21lJFxlbGFuZ2VsYWFyXHZpc3VhbCBzdHVkaW8gMjAxNVxQcm9qZWN0c1xOZXN0ZWRTZXJ2aWNlc1xOZXN0ZWRTZXJ2aWNlc1xTZXJ2aWNlIFJlZmVyZW5jZXNcU2VydmljZVJlZmVyZW5jZTFcTmVzdGVkU2VydmljZXMuU2VydmljZVJlZmVyZW5jZTEuSVJldmVyc2VTdHJpbmcuUmV2ZXJzZVN0cmluZy54YW1sCSADTg4CAQElBTkPAgEKOgVEFwIBB0UFTA4CAQI0QDShAQIBDCoPLh8CAQs9C0EfAgEJSjBKbAIBBUcxR0ECAQM=</sads:DebugSymbol.Symbol>
+  </Sequence>
+</Activity>
